@@ -39,7 +39,7 @@ const Auth = () => {
 
   const onSociaClick = async (event) => {
     const {
-      target: {name },
+      target: { name },
     } = event;
 
     let provider;

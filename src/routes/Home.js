@@ -1,3 +1,4 @@
+import Nweet from "components/Nweet";
 import { dbService } from "fbase";
 import { useEffect, useState } from "react";
 
@@ -6,6 +7,7 @@ const Home = ({ userObj } ) => {
     const [nweets, setNweets] = useState([]);
 
     
+    // useEffect, 인자로 []를 넘겨주는 것은 두 번 실행하는 것을 방지하기 위함
     useEffect(() => {
         dbService.collection("nweets").onSnapshot((snapshot) => {
             const newArray = snapshot.docs.map((document) => ({
@@ -39,23 +41,28 @@ const Home = ({ userObj } ) => {
 
     
     return (
-        <form onSubmit={onSubmit}>
-            <input 
-                value={nweet}
-                onChange={onChange}
-                type="text"
-                placeholder="What's on your mind?"
-                maxLength={120}
-                />
-            <input type="submit" value="Nweet" />
+        <>
+            <form onSubmit={onSubmit}>
+                
+                <input 
+                    value={nweet}
+                    onChange={onChange}
+                    type="text"
+                    placeholder="What's on your mind?"
+                    maxLength={120}
+                    />
+                <input type="submit" value="Nweet" />
+                
+            </form>
+
             <div>
-                {nweets.map((nweet) => (
-                    <div key={nweet.id}>
-                        <h4>{nweet.text}</h4>
-                    </div>
-                ))}
+            {nweets.map((nweet) => (
+                <Nweet key={nweet.id} nweetObj={nweet} 
+                    isOwner={nweet.creatorId === userObj.uid }
+                />
+            ))}
             </div>
-        </form>
+        </>
     );
 };
 
