@@ -11,9 +11,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
 
     const ok = window.confirm('삭제하시겠습니까?');
     if(ok) {
-      console.log(nweetObj.id);
       const data = await dbService.doc(`nweets/${nweetObj.id}`).delete();
-      console.log(data);
     }
   };
 
@@ -32,7 +30,6 @@ const Nweet = ({ nweetObj, isOwner }) => {
 
   const onSubmit = async(event) => {
     event.preventDefault();
-    console.log(nweetObj.id, newNweet);
     await dbService.doc(`nweets/${nweetObj.id}`).update({ text: newNweet });
     setEditing(false);
   };
