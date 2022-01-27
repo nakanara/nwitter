@@ -2,7 +2,7 @@ import { authService, dbService } from "fbase";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Profile = ({ userObj }) => {
+const Profile = ({ userObj, refreshUser }) => {
 
 
   const hitory = useNavigate();
@@ -21,8 +21,13 @@ const Profile = ({ userObj }) => {
     setNewDisplayName(value);
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+
+    if(userObj.displayName != newDisplayName) {
+      await userObj.updateProfile({ displayName: newDisplayName });
+      refreshUser();
+    }
   }
 
   // 컴포넌트 로딩 후 실행
