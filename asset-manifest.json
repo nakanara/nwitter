@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/nakanara/nwitter/static/js/main.edded6d2.js",
+    "index.html": "/nakanara/nwitter/index.html",
+    "main.edded6d2.js.map": "/nakanara/nwitter/static/js/main.edded6d2.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.edded6d2.js"
+  ]
+}
