@@ -8,7 +8,10 @@ const Home = ({ userObj } ) => {
     
     // useEffect, 인자로 []를 넘겨주는 것은 두 번 실행하는 것을 방지하기 위함
     useEffect(() => {
-        dbService.collection("nweets").onSnapshot((snapshot) => {
+        dbService
+            .collection("nweets")
+            .orderBy("createdAt", "desc")
+            .onSnapshot((snapshot) => {
             const newArray = snapshot.docs.map((document) => ({
                 id: document.id, 
                 ...document.data(),

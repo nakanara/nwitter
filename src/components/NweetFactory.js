@@ -3,6 +3,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faZhihu } from "@fortawesome/free-brands-svg-icons";
 
 const NweetFactory = ({userObj}) => {
 
@@ -57,9 +58,10 @@ const onFileChange = (event) => {
 
         setAttachment(result);
     };
-
-    reader.readAsDataURL(theFile);
     
+    if (Boolean(theFile)) {
+      reader.readAsDataURL(theFile);
+    }
 
 };
 
